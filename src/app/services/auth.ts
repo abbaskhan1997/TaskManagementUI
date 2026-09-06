@@ -16,5 +16,9 @@ export class Auth {
     return this.http.post('https://localhost:7055/api/auth/login', credentials);
   }
 
+  logout() {
+  localStorage.removeItem('token');
+}
+
 
 }
