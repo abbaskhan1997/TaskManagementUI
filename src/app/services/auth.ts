@@ -11,4 +11,10 @@ export class Auth {
   register(userData: any) {
     return this.http.post('https://localhost:7055/api/auth/register', userData);
   }
+
+  login(credentials: any) {
+    return this.http.post('https://localhost:7055/api/auth/login', credentials);
+  }
+
+
 }
