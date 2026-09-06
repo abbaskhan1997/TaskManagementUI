@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Auth } from '../services/auth';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [FormsModule],
@@ -9,7 +10,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.html',
 })
 export class Login {
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth,
+    private router: Router
+  ) {}
 
   email: string = '';
 password: string = '';
@@ -23,6 +26,7 @@ password: string = '';
 
  this.auth.login(data).subscribe((response: any) => {
   localStorage.setItem('token', response.token);
+  this.router.navigate(['/tasks']);
   console.log(response);
 });
 }
