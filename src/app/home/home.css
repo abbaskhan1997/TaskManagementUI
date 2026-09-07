@@ -1,0 +1,37 @@
+/* Home page */
+
+h2 {
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  font-size: 32px;
+  color: #1f2937;
+}
+
+/* Buttons ko center mein rakhne ke liye */
+button {
+  display: block;
+  width: 350px;
+  height: 70px;
+  margin: 25px auto;
+  border: none;
+  border-radius: 10px;
+
+  background-color: #2563eb;
+  color: white;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.98);
+}

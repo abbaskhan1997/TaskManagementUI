@@ -10,4 +10,12 @@ export class TaskService {
   getTasks() {
   return this.http.get('https://localhost:7055/api/Task');
 }
+
+createTask(task: any) {
+  return this.http.post(
+    'https://localhost:7055/api/Task',
+    task
+  );
+}
+
 }

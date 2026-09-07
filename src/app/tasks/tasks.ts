@@ -23,7 +23,7 @@ tasks: any[] = [];
     this.taskService.getTasks().subscribe((tasks: any) => {
         this.tasks = tasks as any[];
         this.cdr.detectChanges(); // Trigger change detection to update the view
-      console.log(tasks);
+      
     });
   }
 }
