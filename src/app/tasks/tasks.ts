@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TaskService } from '../services/task-service';
 import { OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [],
@@ -11,7 +12,8 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class Tasks implements OnInit {
   constructor(private taskService: TaskService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
 tasks: any[] = [];
@@ -26,4 +28,11 @@ tasks: any[] = [];
       
     });
   }
+
+  updateTask(task: any) {
+    this.router.navigate(['/add-task'], {
+    state: { task: task }
+});
+  
+}
 }

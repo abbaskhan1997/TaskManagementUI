@@ -38,6 +38,12 @@
     <input type="date" [(ngModel)]="dueDate" name="dueDate">
   </div>
 
+  @if (!isEditMode) {
   <button type="button" (click)="saveTask()">Save Task</button>
+}
+
+@if (isEditMode) {
+  <button type="button" (click)="updateTask()">Update Task</button>
+}
 
 </form>

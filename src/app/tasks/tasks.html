@@ -8,6 +8,7 @@
       <th>Status</th>
       <th>Priority</th>
       <th>Due Date</th>
+      <th>Action</th>
     </tr>
   </thead>
 
@@ -19,6 +20,7 @@
         <td>{{ task.status }}</td>
         <td>{{ task.priority }}</td>
         <td>{{ task.dueDate }}</td>
+        <td><button (click)="updateTask(task)">Update</button></td>
       </tr>
     }
   </tbody>

@@ -18,4 +18,11 @@ createTask(task: any) {
   );
 }
 
+updateTask(id: number, task: any) {
+  return this.http.put(
+    `https://localhost:7055/api/Task/${id}`,
+    task
+  );
+}
+
 }
