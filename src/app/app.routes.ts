@@ -4,7 +4,7 @@ import { Register } from './register/register';
 import { Tasks } from './tasks/tasks';
 import { AddTask } from './add-task/add-task';
 import { Home } from './home/home';
-
+import { authGuard } from './guards/auth-guard';
 export const routes: Routes = [
   {
     path: 'login',
@@ -19,17 +19,18 @@ export const routes: Routes = [
   {
     path: 'tasks',
     component: Tasks,
+    canActivate: [authGuard],
   },
-  
+
   {
     path: 'add-task',
     component: AddTask,
+    canActivate: [authGuard],
   },
 
   {
     path: 'home',
     component: Home,
-  }
-
-
+    canActivate: [authGuard],
+  },
 ];
