@@ -17,7 +17,7 @@ export class AddTask {
        const task = history.state.task;
 
   if (task) {
-    
+
     this.isEditMode = true;
 
     this.title = task.title;
@@ -55,7 +55,9 @@ export class AddTask {
 
     this.clearForm();
 
-    this.taskService.createTask(task).subscribe((response) => {});
+    this.taskService.createTask(task).subscribe((response) => {
+      alert('Task Added successfully!');
+    });
   }
 
   updateTask() {
@@ -69,7 +71,8 @@ export class AddTask {
   };
 
   this.taskService.updateTask(task.id, task).subscribe((response) => {
-    console.log(response);
+    this.router.navigate(['/tasks']);
+    alert('Task updated successfully!');
   });
 }
 }

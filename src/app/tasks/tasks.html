@@ -20,8 +20,8 @@
         <td>{{ task.status }}</td>
         <td>{{ task.priority }}</td>
         <td>{{ task.dueDate }}</td>
-        <td><button (click)="editTask(task)">Edit</button></td>
-        <td><button (click)="deleteTask(task.id)">Delete</button></td>
+        <td><button class="edit-btn"(click)="editTask(task)">Edit</button></td>
+        <td><button class="delete-btn" (click)="deleteTask(task.id)">Delete</button></td>
       </tr>
     }
   </tbody>

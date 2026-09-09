@@ -11,34 +11,37 @@ import { Router } from '@angular/router';
   templateUrl: './tasks.html',
 })
 export class Tasks implements OnInit {
-  constructor(private taskService: TaskService,
+  constructor(
+    private taskService: TaskService,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
   ) {}
 
-tasks: any[] = [];
+  tasks: any[] = [];
   ngOnInit() {
     this.loadTasks();
   }
 
   loadTasks() {
     this.taskService.getTasks().subscribe((tasks: any) => {
-        this.tasks = tasks as any[];
-        this.cdr.detectChanges(); // Trigger change detection to update the view
-      
+      this.tasks = tasks as any[];
+      this.cdr.detectChanges(); // Trigger change detection to update the view
     });
   }
 
   editTask(task: any) {
     this.router.navigate(['/add-task'], {
-    state: { task: task }
-});
-  
-}
+      state: { task: task },
+    });
+  }
 
-deleteTask(id: number) {
-  this.taskService.deleteTask(id).subscribe(() => {
-    this.loadTasks(); // Refresh the task list after deletion
-  });
-}
+  deleteTask(id: number) {
+    const confirmDelete = confirm('Are you sure you want to delete this task?');
+
+    if (confirmDelete) {
+      this.taskService.deleteTask(id).subscribe(() => {
+        this.loadTasks();
+      });
+    }
+  }
 }

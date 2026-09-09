@@ -8,19 +8,21 @@ button {
   font-size: 14px;
 }
 
-button:first-child {
-  background-color: #2563eb;
+
+
+.edit-btn {
+  background-color: #16a34a;
 }
 
-button:first-child:hover {
-  background-color: #1d4ed8;
+.edit-btn:hover {
+  background-color: #15803d;
 }
 
-button:last-child {
+.delete-btn {
   background-color: #dc2626;
 }
 
-button:last-child:hover {
+.delete-btn:hover {
   background-color: #b91c1c;
 }
 
