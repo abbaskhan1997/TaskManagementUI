@@ -3,13 +3,17 @@
 <form>
   <div>
     <label>Email</label>
-    <input type="email" [(ngModel)]="email" name="email">
+    <input type="email" [(ngModel)]="email" name="email" />
   </div>
 
   <div>
     <label>Password</label>
-    <input type="password" [(ngModel)]="password" name="password">
+    <input type="password" [(ngModel)]="password" name="password" />
   </div>
 
   <button type="submit" (click)="login()">Login</button>
+  <p>
+    Don't have an account?
+    <a routerLink="/register">Register</a>
+  </p>
 </form>

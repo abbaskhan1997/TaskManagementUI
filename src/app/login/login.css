@@ -1,0 +1,45 @@
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+form {
+  width: 350px;
+  margin: 50px auto;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+p a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
