@@ -5,6 +5,8 @@ import { Tasks } from './tasks/tasks';
 import { AddTask } from './add-task/add-task';
 import { Home } from './home/home';
 import { authGuard } from './guards/auth-guard';
+import { NotFound } from './not-found/not-found';
+
 export const routes: Routes = [
   {
     path: 'login',
@@ -33,4 +35,10 @@ export const routes: Routes = [
     component: Home,
     canActivate: [authGuard],
   },
+
+  {
+  path: '**',
+  component: NotFound
+}
+
 ];
