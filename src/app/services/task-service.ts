@@ -24,5 +24,7 @@ updateTask(id: number, task: any) {
     task
   );
 }
-
+ deleteTask(id: number) {
+  return this.http.delete(`https://localhost:7055/api/Task/${id}`);
+ }
 }

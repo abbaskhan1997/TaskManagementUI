@@ -29,10 +29,16 @@ tasks: any[] = [];
     });
   }
 
-  updateTask(task: any) {
+  editTask(task: any) {
     this.router.navigate(['/add-task'], {
     state: { task: task }
 });
   
+}
+
+deleteTask(id: number) {
+  this.taskService.deleteTask(id).subscribe(() => {
+    this.loadTasks(); // Refresh the task list after deletion
+  });
 }
 }

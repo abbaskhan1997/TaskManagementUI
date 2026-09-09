@@ -17,7 +17,9 @@ export class AddTask {
        const task = history.state.task;
 
   if (task) {
+    
     this.isEditMode = true;
+
     this.title = task.title;
     this.description = task.description;
     this.status = task.status;

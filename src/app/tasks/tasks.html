@@ -8,7 +8,7 @@
       <th>Status</th>
       <th>Priority</th>
       <th>Due Date</th>
-      <th>Action</th>
+      <th colspan="2">Action</th>
     </tr>
   </thead>
 
@@ -20,7 +20,8 @@
         <td>{{ task.status }}</td>
         <td>{{ task.priority }}</td>
         <td>{{ task.dueDate }}</td>
-        <td><button (click)="updateTask(task)">Update</button></td>
+        <td><button (click)="editTask(task)">Edit</button></td>
+        <td><button (click)="deleteTask(task.id)">Delete</button></td>
       </tr>
     }
   </tbody>
