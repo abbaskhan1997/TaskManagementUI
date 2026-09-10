@@ -1,9 +1,14 @@
 <nav>
-  <h2>Task Management System</h2>
-
-  <div>
+  @if (!isLoggedIn) {
     <a routerLink="/login">Login</a>
     <a routerLink="/register">Register</a>
+  }
+
+  @if (isLoggedIn) {
+    <a routerLink="/home">Home</a>
+    <a routerLink="/tasks">Tasks</a>
+    <a routerLink="/add-task">Add Task</a>
+
     <button (click)="logout()">Logout</button>
-  </div>
+  }
 </nav>

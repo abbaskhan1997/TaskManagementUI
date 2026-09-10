@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Auth {
+
+  isLoggedIn = new BehaviorSubject<boolean>(
+    !!localStorage.getItem('token')
+  );
 
   constructor(private http: HttpClient) {}
 
@@ -17,8 +22,7 @@ export class Auth {
   }
 
   logout() {
-  localStorage.removeItem('token');
-}
-
-
+    localStorage.removeItem('token');
+    this.isLoggedIn.next(false);
+  }
 }

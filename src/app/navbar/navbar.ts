@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Auth } from '../services/auth';
 import { Router } from '@angular/router';
@@ -10,12 +10,28 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.html',
 })
 export class Navbar {
-  constructor(private auth: Auth, 
-    private router: Router) {}
+
+  isLoggedIn = false;
+
+  constructor(
+    private auth: Auth,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
+
+    this.auth.isLoggedIn.subscribe((status) => {
+
+      this.isLoggedIn = status;
+
+      this.cdr.detectChanges();
+
+    });
+
+  }
 
   logout() {
     this.auth.logout();
-    console.log('User logged out');
     this.router.navigate(['/login']);
   }
+
 }

@@ -1,27 +1,32 @@
 <h2>Register</h2>
 
-<form>
+<form #registerForm="ngForm">
   <div>
     <label>Name</label>
-    <input type="text" [(ngModel)]="name" name="name" />
+    <input type="text" [(ngModel)]="name" name="name" required pattern="[A-Za-z ]+" />
   </div>
 
   <div>
     <label>Email</label>
-    <input type="email" [(ngModel)]="email" name="email" />
+    <input type="email" [(ngModel)]="email" name="email" required />
   </div>
 
   <div>
     <label>Password</label>
-    <input type="password" [(ngModel)]="password" name="password" />
+    <input type="password" [(ngModel)]="password" name="password" required   pattern="^(?=.*[A-Za-z])(?=.*[0-9]).+$" />
   </div>
 
   <div>
-    <label>Role</label>
-    <input type="text" [(ngModel)]="role" name="role" />
+   <label>Role</label>
+
+<select [(ngModel)]="role" name="role" required>
+  <option value="">Select Role</option>
+  <option value="User">User</option>
+  <option value="Admin">Admin</option>
+</select>
   </div>
 
-  <button type="submit" (click)="register()">Register</button>
+  <button type="submit" (click)="register()" [disabled]="registerForm.invalid">Register</button>
 
   <p>
     Already have an account?

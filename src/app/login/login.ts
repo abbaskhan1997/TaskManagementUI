@@ -20,16 +20,24 @@ password: string = '';
 
 
   login() {
+
   const data = {
     email: this.email,
     password: this.password
   };
 
- this.auth.login(data).subscribe((response: any) => {
-  localStorage.setItem('token', response.token);
-  this.router.navigate(['/home']);
-  console.log(response);
-});
+  this.auth.login(data).subscribe((response: any) => {
+
+    localStorage.setItem('token', response.token);
+
+    this.auth.isLoggedIn.next(true);
+
+    this.router.navigate(['/home']);
+
+    console.log(response);
+
+  });
+
 }
 
 }

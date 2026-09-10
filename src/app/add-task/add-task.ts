@@ -45,6 +45,7 @@ export class AddTask {
   }
 
   saveTask() {
+    
     const task = {
       title: this.title,
       description: this.description,
@@ -61,6 +62,7 @@ export class AddTask {
   }
 
   updateTask() {
+    
   const task = {
     id: history.state.task.id,
     title: this.title,
