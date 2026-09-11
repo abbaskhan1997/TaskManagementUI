@@ -11,33 +11,35 @@ import { RouterLink } from '@angular/router';
   templateUrl: './login.html',
 })
 export class Login {
-  constructor(private auth: Auth,
-    private router: Router
+  constructor(
+    private auth: Auth,
+    private router: Router,
   ) {}
 
   email: string = '';
-password: string = '';
-
+  password: string = '';
 
   login() {
+    const data = {
+      email: this.email,
+      password: this.password,
+    };
 
-  const data = {
-    email: this.email,
-    password: this.password
-  };
+    this.auth.login(data).subscribe((response: any) => {
+      
+      localStorage.setItem('token', response.token);
 
-  this.auth.login(data).subscribe((response: any) => {
+      this.auth.isLoggedIn.next(true);
 
-    localStorage.setItem('token', response.token);
+      const role = this.auth.getRole();
 
-    this.auth.isLoggedIn.next(true);
+      if (role === 'Admin') {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.router.navigate(['/home']);
+      }
 
-    this.router.navigate(['/home']);
-
-    console.log(response);
-
-  });
-
-}
-
+      console.log(response);
+    });
+  }
 }

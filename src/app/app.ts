@@ -26,7 +26,7 @@ export class App {
     )
     .subscribe((event: NavigationEnd) => {
 
-      const validRoutes = ['/login', '/register', '/home', '/tasks', '/add-task'];
+      const validRoutes = ['/login', '/register', '/home', '/tasks', '/add-task', '/dashboard', '/users'];
 
       this.isNotFound = !validRoutes.includes(event.urlAfterRedirects);
     });

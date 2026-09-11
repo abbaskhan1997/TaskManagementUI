@@ -3,7 +3,12 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
+  /* width: 100%; */
   background-color: #1f2937;
+}
+
+nav button {
+  margin-left: auto;
 }
 
 nav h2 {
@@ -25,3 +30,6 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
+
+
+

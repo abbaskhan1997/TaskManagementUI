@@ -1,14 +1,21 @@
 <nav>
-  @if (!isLoggedIn) {
+  @if (!(isLoggedIn$ | async)) {
     <a routerLink="/login">Login</a>
     <a routerLink="/register">Register</a>
   }
 
-  @if (isLoggedIn) {
+   @if (isLoggedIn$ | async) {
+
+     @if (isAdmin)  {
+      <button (click)="logout()">Logout</button>
+    }
+
+   @else {
     <a routerLink="/home">Home</a>
     <a routerLink="/tasks">Tasks</a>
     <a routerLink="/add-task">Add Task</a>
 
     <button (click)="logout()">Logout</button>
   }
+}
 </nav>

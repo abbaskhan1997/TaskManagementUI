@@ -1,31 +1,29 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink, Router } from '@angular/router';
 import { Auth } from '../services/auth';
-import { Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe],
   selector: 'app-navbar',
   styleUrl: './navbar.css',
   templateUrl: './navbar.html',
 })
 export class Navbar {
 
-  isLoggedIn = false;
+  isLoggedIn$: any;
+  isAdmin = false;
 
   constructor(
     private auth: Auth,
-    private router: Router,
-    private cdr: ChangeDetectorRef
+    public router: Router
   ) {
 
-    this.auth.isLoggedIn.subscribe((status) => {
+    this.isLoggedIn$ = this.auth.isLoggedIn.asObservable();
 
-      this.isLoggedIn = status;
-
-      this.cdr.detectChanges();
-
-    });
+    this.auth.isLoggedIn.subscribe(() => {
+  this.isAdmin = this.auth.getRole() === 'Admin';
+});
 
   }
 
@@ -33,5 +31,4 @@ export class Navbar {
     this.auth.logout();
     this.router.navigate(['/login']);
   }
-
 }

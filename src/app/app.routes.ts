@@ -6,6 +6,8 @@ import { AddTask } from './add-task/add-task';
 import { Home } from './home/home';
 import { authGuard } from './guards/auth-guard';
 import { NotFound } from './not-found/not-found';
+import { Users } from './admin/users/users';
+import { Dashboard } from './admin/dashboard/dashboard';
 
 export const routes: Routes = [
   {
@@ -37,8 +39,22 @@ export const routes: Routes = [
   },
 
   {
+  path: 'users',
+  component: Users,
+  canActivate: [authGuard]
+},
+
+  {
+  path: 'dashboard',
+  component: Dashboard,
+  canActivate: [authGuard]
+},
+
+{
   path: '**',
   component: NotFound
 }
+
+
 
 ];
