@@ -19,14 +19,15 @@ export class Login {
   email: string = '';
   password: string = '';
 
-  login() {
-    const data = {
-      email: this.email,
-      password: this.password,
-    };
 
-    this.auth.login(data).subscribe((response: any) => {
-      
+login() {
+  const data = {
+    email: this.email,
+    password: this.password,
+  };
+
+  this.auth.login(data).subscribe({
+    next: (response: any) => {
       localStorage.setItem('token', response.token);
 
       this.auth.isLoggedIn.next(true);
@@ -38,8 +39,13 @@ export class Login {
       } else {
         this.router.navigate(['/home']);
       }
+    },
 
-      console.log(response);
-    });
-  }
+    error: () => {
+      alert('Invalid email or password');
+    }
+  });
+}
+
+
 }
