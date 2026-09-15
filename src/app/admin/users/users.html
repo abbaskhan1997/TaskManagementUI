@@ -24,6 +24,7 @@
       <td>
         <button class="edit-btn" (click)="editUser(user)">Edit</button>
         <button class="delete-btn" (click)="deleteUser(user.id)">Delete</button>
+        <button class="view-btn" (click)="viewTasks(user.id)">View Tasks</button>
       </td>
     </tr>
   </tbody>
@@ -49,4 +50,42 @@
       </div>
     </div>
   </div>
+}
+
+@if (userTasks.length > 0) {
+  <h3>
+     Tasks of {{ selectedTaskUser.name }} (User ID: {{ selectedTaskUser.id }})
+  </h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Due Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let task of userTasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.dueDate | date: 'yyyy-MM-dd' }}</td>
+      </tr>
+    </tbody>
+  </table>
+}
+
+@if (tasksLoaded && selectedTaskUser && userTasks.length === 0) {
+  <h3>
+    Tasks of {{ selectedTaskUser.name }} (User ID: {{ selectedTaskUser.id }})
+  </h3>
+
+  <p>No tasks found for this user.</p>
 }

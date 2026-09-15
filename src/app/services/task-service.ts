@@ -11,6 +11,12 @@ export class TaskService {
   return this.http.get('https://localhost:7055/api/Task');
 }
 
+getTasksByUser(userId: number) {
+  return this.http.get(
+    `https://localhost:7055/api/Task/user/${userId}`
+  );
+}
+
 createTask(task: any) {
   return this.http.post(
     'https://localhost:7055/api/Task',

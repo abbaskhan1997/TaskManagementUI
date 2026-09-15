@@ -126,3 +126,11 @@ tr {
   text-align: right;
   margin-top: 10px;
 }
+
+.view-btn {
+  background-color: #2563eb;
+}
+
+.view-btn:hover {
+  background-color: #1d4ed8;
+}

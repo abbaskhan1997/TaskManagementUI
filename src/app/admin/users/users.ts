@@ -4,35 +4,54 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TaskService } from '../../services/task-service';
 
 @Component({
   selector: 'app-users',
   imports: [CommonModule, FormsModule],
   templateUrl: './users.html',
-  styleUrl: './users.css'
+  styleUrl: './users.css',
 })
 export class Users implements OnInit {
-searchText: string = '';
+  searchText: string = '';
   users: any[] = [];
+  userTasks: any[] = [];
+  tasksLoaded: boolean = false;
   selectedUser: any = null;
+  selectedTaskUser: any = null;
 
-  constructor(private userService: UserService, private cdRef: ChangeDetectorRef, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private cdRef: ChangeDetectorRef,
+    private router: Router,
+    private taskService: TaskService,
+  ) {}
 
   ngOnInit() {
     this.getUsers();
   }
 
   get filteredUsers() {
-  return this.users.filter(user =>
-    user.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
-    user.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
-    user.role.toLowerCase().includes(this.searchText.toLowerCase())
-  );
-  
-}
+    return this.users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        user.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        user.role.toLowerCase().includes(this.searchText.toLowerCase()),
+    );
+  }
+
+  viewTasks(userId: number) {
+    this.selectedTaskUser = this.users.find((user) => user.id === userId);
+    this.tasksLoaded = false;
+    this.taskService.getTasksByUser(userId).subscribe((tasks) => {
+      this.userTasks = tasks as any[];
+      this.tasksLoaded = true;
+      this.cdRef.detectChanges();
+    });
+  }
 
   getUsers() {
-    this.userService.getUsers().subscribe(data => {
+    this.userService.getUsers().subscribe((data) => {
       this.users = data;
       this.cdRef.detectChanges();
     });
@@ -44,7 +63,6 @@ searchText: string = '';
         alert('User updated successfully!');
         this.getUsers();
         this.selectedUser = null;
-        
       });
     }
   }
@@ -56,15 +74,14 @@ searchText: string = '';
       this.userService.deleteUser(id).subscribe(() => {
         alert('User deleted successfully!');
         this.getUsers();
-       
       });
     }
   }
-  
 
   editUser(user: any) {
-    this.userService.getUserById(user.id).subscribe(user => {
+    this.userService.getUserById(user.id).subscribe((user) => {
       this.selectedUser = user;
+      this.cdRef.detectChanges();
     });
   }
 }
