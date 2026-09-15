@@ -22,8 +22,7 @@ role: string = '';
   const data = {
     name: this.name,
     email: this.email,
-    password: this.password,
-    role: this.role
+    password: this.password
   };
 
   this.auth.register(data).subscribe(response => {
